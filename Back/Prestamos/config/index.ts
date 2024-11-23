@@ -29,16 +29,18 @@ export class App {
     }
 
     routes() {
-        // this.routePrv.personaRoutes.routes(this.app)
-        // this.routePrv.empleadoRoutes.routes(this.app)
-        // this.routePrv.sucursalRoutes.routes(this.app)
-        this.routePrv.clienteRoutes.routes(this.app)
-        this.routePrv.cuentaRoutes.routes(this.app)
-        this.routePrv.prestamoRoutes.routes(this.app)
-        this.routePrv.amortizacionRoutes.routes(this.app)
-        this.routePrv.garantiaRoutes.routes(this.app)
-        this.routePrv.TipoCuentaRoutes.routes(this.app)
-        this.routePrv.TipoPrestamoRoutes.routes(this.app)
+
+        this.routePrv.UserRoutes.routes(this.app)
+        this.routePrv.AccountRoutes.routes(this.app)
+        this.routePrv.LoanRoutes.routes(this.app)
+        this.routePrv.AmortizationRoutes.routes(this.app)
+        this.routePrv.warrantyRoutes.routes(this.app)
+        this.routePrv.TypeAccountRoutes.routes(this.app)
+        this.routePrv.TypeLoanRoutes.routes(this.app)
+        this.routePrv.roleRoutes.routes(this.app)
+        this.routePrv.roleUserRoutes.routes(this.app)
+        this.routePrv.authRoutes.routes(this.app)
+        this.routePrv.refreshTokenRoutes.routes(this.app)
     }
 
 

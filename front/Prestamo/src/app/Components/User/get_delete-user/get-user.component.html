@@ -1,0 +1,399 @@
+<!-- <p-card class="w-12 h-full">
+    <ng-template pTemplate="header">
+        <div class="flex justify-content-between flex-wrap">
+            <h3 class="ml-4">
+                Registro de Users
+            </h3>
+            <div class="mt-2 mr-2">
+                <a 
+                  pButton 
+                  pRipple
+                  label="Crear Users" 
+                  icon="pi pi-user-plus"
+                  class="bg-cyan-600"
+                  [routerLink]="['/Users/nuevo']">
+                </a>
+            </div>
+        </div>
+    </ng-template>
+
+    <p>
+        <p-table [value]="Users"
+            styleClass="p-datatable-gridlines" 
+            responsiveLayout="stack" 
+            [paginator]="true"
+            [rows]="5"
+            [rowsPerPageOptions]="[5, 10, 20]"
+            [tableStyle]="{ 'min-width': '40rem' }"
+            [globalFilterFields]="['nameCliente', 'emailCliente', 'phoneCliente', 'is_activeCliente']">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nameCliente" style="width:19%">
+                        name <p-sortIcon field="nameCliente" />
+                    </th>
+                    <th pSortableColumn="emailCliente" style="width:19%">
+                        Dirección <p-sortIcon field="emailCliente" />
+                    </th>
+                    <th pSortableColumn="phoneCliente" style="width:19%">
+                        Teléfono <p-sortIcon field="phoneCliente" />
+                    </th>
+                    <th pSortableColumn="is_activeCliente" style="width:19%">
+                        is_active <p-sortIcon field="is_activeCliente" />
+                    </th>
+                    <th class="flex justify-content-center flex-wrap">Acciones</th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter type="text" field="nameCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="emailCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="phoneCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="is_activeCliente" [showClearButton]="true" />
+                    </th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-Users>
+                <tr>
+                    <td>{{ Users.nameCliente }}</td>
+                    <td>{{ Users.emailCliente }}</td>
+                    <td>{{ Users.phoneCliente }}</td>
+                    <td>{{ Users.is_activeCliente }}</td>
+                    <td>
+                        <a 
+                            pButton 
+                            pRipple
+                            icon="pi pi-sync"
+                            severity="warning"
+                            class="mr-1"
+                            [routerLink]="['/Users/edit', Users.id]">
+                        </a>
+                        <button 
+                            pButton 
+                            pRipple
+                            severity="danger"
+                            icon="pi pi-eraser"
+                            class="mr-1"
+                            (click)="eliminar(Users.id)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</p-card> -->
+
+<!-- <p-card class="w-12 h-full">
+    <ng-template pTemplate="header">
+        <div class="flex justify-content-between flex-wrap">
+            <h3 class="ml-4">
+                Registro de Users
+            </h3>
+            <div class="mt-2 mr-2">
+                <a 
+                  pButton 
+                  pRipple
+                  label="Crear Users" 
+                  icon="pi pi-user-plus"
+                  class="bg-cyan-600"
+                  [routerLink]="['/Users/nuevo']">
+                </a>
+            </div>
+        </div>
+    </ng-template>
+
+    <p>
+        <p-table [value]="Users"
+            styleClass="p-datatable-gridlines" 
+            responsiveLayout="stack" 
+            [paginator]="true"
+            [rows]="5"
+            [rowsPerPageOptions]="[5, 10, 20]"
+            [tableStyle]="{ 'min-width': '40rem' }"
+            [globalFilterFields]="['nameCliente', 'emailCliente', 'phoneCliente', 'is_activeCliente']">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nameCliente" style="width:19%">
+                        name <p-sortIcon field="nameCliente" />
+                    </th>
+                    <th pSortableColumn="emailCliente" style="width:19%">
+                        Dirección <p-sortIcon field="emailCliente" />
+                    </th>
+                    <th pSortableColumn="phoneCliente" style="width:19%">
+                        Teléfono <p-sortIcon field="phoneCliente" />
+                    </th>
+                    <th pSortableColumn="is_activeCliente" style="width:19%">
+                        is_active <p-sortIcon field="is_activeCliente" />
+                    </th>
+                    <th class="flex justify-content-center flex-wrap">Acciones</th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter type="text" field="nameCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="emailCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="phoneCliente" [showClearButton]="true" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="is_activeCliente" [showClearButton]="true" />
+                    </th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-Users>
+                <tr>
+                     
+                    <td [pEditableColumn]="Users.nameCliente" pEditableColumnField="nameCliente">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.nameCliente" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.nameCliente }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    
+                    <td [pEditableColumn]="Users.emailCliente" pEditableColumnField="emailCliente">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.emailCliente" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.emailCliente }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    
+                    <td [pEditableColumn]="Users.phoneCliente" pEditableColumnField="phoneCliente">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.phoneCliente" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.phoneCliente }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                   
+                    <td [pEditableColumn]="Users.is_activeCliente" pEditableColumnField="is_activeCliente">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.is_activeCliente" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.is_activeCliente }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                
+                    <td>
+                        <a 
+                            pButton 
+                            pRipple
+                            icon="pi pi-sync"
+                            severity="warning"
+                            class="mr-1"
+                            [raised]="true"
+                            [routerLink]="['/Users/edit', Users.id]">
+                        </a>
+                        <button 
+                            pButton 
+                            pRipple
+                            severity="danger"
+                            icon="pi pi-trash"
+                            class="mr-1"
+                            [raised]="true"
+                            (click)="eliminar(Users.id)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</p-card>
+ -->
+
+ <p-card class="w-12 h-full">
+    <ng-template pTemplate="header">
+        <div class="flex justify-content-between flex-wrap">
+            <h3 class="ml-4">Registro de Users</h3>
+            <td>
+                
+                    <div>
+                       <button 
+                       pButton 
+                       pRipple
+                       size="small"
+                       icon="pi pi-warning"
+                       class="mr-1"
+                       [raised]="true"
+                       (click)="mostrarUsers()">
+                   </button>
+                   </div>
+                   
+            <div class="mt-2 mr-2">
+                <a 
+                  pButton 
+                  pRipple
+                  label="Crear Users" 
+                  class="mr-1"
+                  icon="pi pi-user-plus"
+                  class="bg-cyan-600"
+                  [routerLink]="['/User/new']">
+                </a>
+            </div>
+        </td>
+        </div>
+    </ng-template>
+
+    <p>
+        <p-table [value]="Users"
+            styleClass="p-datatable-gridlines" 
+            responsiveLayout="stack" 
+            [paginator]="true"
+            [rows]="5"
+            [rowsPerPageOptions]="[5, 10, 20]"
+            [tableStyle]="{ 'max-width': '58rem', 'min-width': '50rem' }"
+            [globalFilterFields]="['name', 'adress', 'email', 'phone', 'is_active']">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="width:19%">name <p-sortIcon field="name" /></th>
+                    <th pSortableColumn="adress" style="width:19%">adress <p-sortIcon field="adress" /></th>
+                    <th pSortableColumn="email" style="width:19%">Dirección <p-sortIcon field="email" /></th>
+                    <th pSortableColumn="phone" style="width:19%">Teléfono <p-sortIcon field="phone" /></th>
+                    <th pSortableColumn="is_active" style="width:19%">is_active <p-sortIcon field="is_active" /></th>
+                    <th class="flex justify-content-center flex-wrap">Acciones</th>
+                </tr>
+                <tr>
+                    <th><p-columnFilter type="text" field="name" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="adress" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="email" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="phone" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="is_active" [showClearButton]="true" /></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-Users>
+                <tr>
+                    <!-- Columna editable para nameCliente -->
+                    <td [pEditableColumn]="Users.name" pEditableColumnField="name">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.name" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.name }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Columna editable para adressCliente -->
+
+                    <td [pEditableColumn]="Users.adress" pEditableColumnField="adress">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.adress" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.adress }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Columna editable para emailCliente -->
+                    <td [pEditableColumn]="Users.email" pEditableColumnField="email">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.email" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.email }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Columna editable para phoneCliente -->
+                    <td [pEditableColumn]="Users.phone" pEditableColumnField="phone">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.phone" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.phone }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Columna editable para is_activeCliente -->
+                    <td [pEditableColumn]="Users.is_active" pEditableColumnField="is_active">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Users.is_active" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Users.is_active }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Columna de acciones -->
+                    <td>
+                        <!-- Botón de actualizar cliente directamente -->
+                         
+                        <button 
+                            pButton 
+                            pRipple
+                            size="small"
+                            icon="pi pi-sync"
+                            severity="warning"
+                            class="mr-1"
+                            [raised]="true"
+                            (click)="actualizarUser(Users)">
+                        </button>
+                        
+                        <button 
+                            pButton 
+                            pRipple
+                            size="small"
+                            severity="danger"
+                            icon="pi pi-trash"
+                            class="mr-1"
+                            [raised]="true"
+                            [routerLink] = "['/User/nuevo', Users.id]">
+                        </button>
+
+                        <button 
+                        pButton 
+                        pRipple
+                        size="small"
+                        severity="danger"
+                        icon="pi pi-trash"
+                        class="mr-1"
+                        [raised]="true"
+                        [routerLink] = "['/Cuentas/nuevo', Users.id]">
+                        Crear Cuenta
+                    </button>
+
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</p-card>

@@ -16,15 +16,15 @@ export class AsideComponent {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Clientes',
+        label: 'User',
         icon: 'pi pi-fw pi-users',
         color: 'blue',
-        routerLink: '/clientes',
+        routerLink: '/User',
       },
       {
-        label: 'Cuenta',
+        label: 'Account',
         icon: 'pi pi-fw pi-users',
-        routerLink: '/Cuentas'
+        routerLink: '/Accounts'
       },
       // {
       //   label: 'Empresarios',
@@ -56,19 +56,19 @@ export class AsideComponent {
       //   ]
       // },
       {
-        label: 'Prestamos',
+        label: 'Loan',
         icon: 'pi pi-fw pi-shopping-bag',
-        routerLink: '/Prestamos'
+        routerLink: '/Loan'
       },
       {
-        label: 'Amortizaciones',
+        label: 'Amortization',
         icon: 'pi pi-fw pi-shopping-bag',
-        routerLink: '/Amortizaciones'
+        routerLink: '/Amortization'
       },
       {
-        label: 'Garantias',
+        label: 'warranty',
         icon: 'pi pi-fw pi-shopping-bag',
-        routerLink: '/Garantias'
+        routerLink: '/warranty'
 
       },
     ];

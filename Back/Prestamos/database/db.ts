@@ -1,3 +1,5 @@
+import { tr } from "@faker-js/faker/.";
+
 const Sequelize = require('sequelize');
 
 // const DB_NAME = 'xe';
@@ -89,7 +91,7 @@ async function generateDb() {
     try {
         await database.authenticate();  // Verifica la conexión
         console.log('Conexión a la base de datos establecida exitosamente.');
-        await database.sync({ force: false })
+        await database.sync({ force: false });
         console.log('Base de datos y tablas creada');
     } catch (error) {
         console.error('Error al conectar a la base de datos:', error);

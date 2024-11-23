@@ -1,0 +1,94 @@
+<p-card header="Actualizar Préstamo" [style]="{ width: '100%' }">
+    <div>
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()" class="p-3 bg-faded">
+        <div class="grid">
+          <div class="col-12 sm:col-6">
+            <div class="p-inputgroup mb-1">
+              <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+              <input
+                type="date"
+                pInputText
+                formControlName="fechaprestamo"
+                placeholder="Fecha del Préstamo"
+                title="Fecha del Préstamo"
+              />
+            </div>
+          </div>
+  
+          <div class="col-12 sm:col-6">
+            <div class="p-inputgroup mb-1">
+              <p-dropdown
+                [options]="typeloan"
+                formControlName="type_loanID"
+                placeholder="Selecciona un Tipo de Préstamo"
+                [showClear]="true"
+              ></p-dropdown>
+            </div>
+          </div>
+  
+          <div class="col-12 sm:col-6">
+            <div class="p-inputgroup mb-1">
+              <span class="p-inputgroup-addon"><i class="pi pi-money-bill"></i></span>
+              <input
+                type="number"
+                pInputText
+                formControlName="montoprestamo"
+                placeholder="Monto del Préstamo"
+                title="Monto del Préstamo"
+              />
+            </div>
+          </div>
+  
+          <div class="col-12 sm:col-6">
+            <div class="p-inputgroup mb-1">
+              <span class="p-inputgroup-addon"><i class="pi pi-percentage"></i></span>
+              <input
+                type="number"
+                pInputText
+                formControlName="interes"
+                placeholder="Interés"
+                title="Interés"
+              />
+            </div>
+          </div>
+  
+          <div class="col-12">
+            <div class="p-inputgroup mb-1">
+              <span class="p-inputgroup-addon"><i class="pi pi-check-circle"></i></span>
+              <input
+                type="checkbox"
+                pInputText
+                formControlName="estado"
+                placeholder="Estado del Préstamo"
+                title="Estado del Préstamo"
+              />
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex justify-content-center flex-wrap">
+          <button
+            pButton
+            pRipple
+            label="Guardar"
+            icon="pi pi-save"
+            severity="info"
+            class="mr-4"
+            type="submit"
+          ></button>
+  
+          <button
+            pButton
+            pRipple
+            label="Cancelar"
+            icon="pi pi-times-circle"
+            severity="warning"
+            class="mr-4"
+            type="button"
+            (click)="cancel()"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </p-card>
+  

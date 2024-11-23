@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { MostrarClienteComponent } from './Components/Cliente/mostrar-cliente/mostrar-cliente.component';
-import { CrearClienteComponent } from './Components/Cliente/crear-cliente/crear-cliente.component';
-import { serviciosSucursalComponent } from './Components/Sucursal/servicios-sucursal/servicios-sucursal.component';
-import { serviciosEmpleadosComponent } from './Components/Empleados/servicios-empleados/servicios-empleados.component';
-import { serviciosCuentasComponent } from './Components/Cuentas/servicios-cuentas/servicios-cuentas.component';
-import { ServiciosPrestamosComponent } from './Components/Prestamos/servicios-prestamo/servicios-prestamo.component';
-import { serviciosAmortizacionesComponent } from './Components/Amortizacion/servicios-amortizacion/servicios-amortizacion.component';
-import { CrearAmortizacionComponent } from './Components/Amortizacion/crear-amortizacion/crear-amortizacion.component';
-import { CrearCuentaComponent } from './Components/Cuentas/crear-cuenta/crear-cuenta.component';
-import { CrearSucursalComponent } from './Components/Sucursal/crear-sucursal/crear-sucursal.component';
-import { CrearEmpleadoComponent } from './Components/Empleados/crear-empleado/crear-empleado.component';
-import { CrearPrestamoComponent } from './Components/Prestamos/crear-prestamo/crear-prestamo.component';
-import { CrearGarantiaComponent } from './Components/Garantia/crear-garantia/crear-garantia.component';
-import { ServiciosGarantiaComponent } from './Components/Garantia/servicios-garantia/servicios-garantia.component';
-import { ActualizarCuentaComponent } from './Components/Cuentas/actualizar-cuenta/actualizar-cuenta.component';
+import { MostrarUserComponent } from './Components/User/get_delete-user/get_delete-user.component';
+import { CrearUserComponent } from './Components/User/create-user/crear-user.component';
+
+import { GetDeleteAccountsComponent } from './Components/Account/Get-Delete-Account/Get-Delete-Account.component';
+import { GetDeleteLoansComponent } from './Components/Loan/Get-Delete-prestamo/Get-Delete-Loan.component';
+import { GDUAmortizationComponent } from './Components/Amortizacion/GDU-Amortization/GDU-Amortization.component';
+import { CrearAmortizacreateAmortizationComponent } from './Components/Amortizacion/Create-Amortization/Create-Amortization.component';
+import { CrearAccountComponent } from './Components/Account/Create-Account/Create-Account.component';
+
+import { CreateLoansComponent } from './Components/Loan/Create-Loan/Create-Loan.component';
+import { CreatewarrantyComponent } from './Components/warranty/create-warranty/Create-warranty.component';
+import { GDUwarrantyComponent } from './Components/warranty/Get-Delete-Update-warranty/GDU-warranty.component';
+import { UpdateAccountComponent } from './Components/Account/Update-Account/Update-Account.component';
+import { updateLoanComponent } from './Components/Loan/Update-Loan/Update-Loan.component';
+import { updateUserComponent } from './Components/User/update-user/update-user.component';
 
 export const routes: Routes = [
     {
@@ -22,64 +22,56 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: "clientes",
-        component: MostrarClienteComponent
+        path: "User",
+        component: MostrarUserComponent
     },
     {
-        path: "clientes/nuevo",
-        component: CrearClienteComponent
+        path: "User/new",
+        component: CrearUserComponent
     },
     {
-        path: "Sucursales",
-        component: serviciosSucursalComponent
+        path: "User/update/:id",
+        component: updateUserComponent
     },
     {
-        path: "Sucursales/nuevo",
-        component: CrearSucursalComponent
+        path: "Accounts",
+        component: GetDeleteAccountsComponent
     },
     {
-        path: "Empleados",
-        component: serviciosEmpleadosComponent
+        path: "Accounts/new",
+        component: CrearAccountComponent
     },
     {
-        path: "Empleados/nuevo",
-        component: CrearEmpleadoComponent
+        path: "Accounts/update/:id",
+        component: UpdateAccountComponent
     },
     {
-        path: "Cuentas",
-        component: serviciosCuentasComponent
+        path: "Loan",
+        component: GetDeleteLoansComponent
     },
     {
-        path: "Cuentas/nuevo/:id",
-        component: CrearCuentaComponent
+        path: "Loan/new",
+        component: CreateLoansComponent
     },
     {
-        path: "Cuentas/Actualizar/:id",
-        component: ActualizarCuentaComponent
+        path: "Loan/update/:id",
+        component: updateLoanComponent
     },
     {
-        path: "Prestamos",
-        component: ServiciosPrestamosComponent
+        path: "Amortization",
+        component: GDUAmortizationComponent
     },
     {
-        path: "Prestamos/nuevo/:id",
-        component: CrearPrestamoComponent
+        path: "Amortization/new",
+        component: CrearAmortizacreateAmortizationComponent
     },
     {
-        path: "Amortizaciones",
-        component: serviciosAmortizacionesComponent
+        path: "warranty",
+        component: GDUwarrantyComponent
     },
     {
-        path: "Amortizaciones/nuevo",
-        component: CrearAmortizacionComponent
-    },
-    {
-        path: "Garantias",
-        component: ServiciosGarantiaComponent
-    },
-    {
-        path: "Garantias/nuevo",
-        component: CrearGarantiaComponent
+        path: "warranty/new",
+        component: CreatewarrantyComponent
     }
 
 ];
