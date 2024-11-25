@@ -1,15 +1,9 @@
-<p-card header="Crear Garantía" [style]="{ width: '100%' }">
+<p-card header="Create warranty" [style]="{ width: '100%' }">
     <ng-template pTemplate="header"></ng-template>
   
     <div>
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()" class="p-3 bg-faded">
         <div class="grid">
-          <div class="col-12 sm:col-6">
-            <div class="p-inputgroup mb-1">
-              <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
-              <input class="w-12" type="number" pInputText formControlName="LoanID" placeholder="ID del Préstamo" title="ID del Préstamo">
-            </div>
-          </div>
   
           <div class="col-12 sm:col-6">
             <div class="p-inputgroup mb-1">
@@ -39,7 +33,7 @@
           <button 
             pButton 
             pRipple
-            label="Guardar"
+            label="Save"
             icon="pi pi-save"
             severity="info"
             class="mr-4"
@@ -49,7 +43,7 @@
           <button 
             pButton 
             pRipple
-            label="Cancelar"
+            label="Cancel"
             icon="pi pi-times-circle"
             severity="warning"
             class="mr-4"

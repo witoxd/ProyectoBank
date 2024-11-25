@@ -13,9 +13,9 @@ export class LoansService {
     private http:HttpClient
   ) {}
 
-  getAllLoans():Observable<{Loanss:LoanI[]}>{
+  getAllLoans():Observable<{Loans:LoanI[]}>{
     return this.http
-      .get<{Loanss:LoanI[]}>(this.base_path)
+      .get<{Loans:LoanI[]}>(this.base_path)
   }
 
 

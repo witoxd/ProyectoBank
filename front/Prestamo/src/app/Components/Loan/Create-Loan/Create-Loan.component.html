@@ -132,7 +132,7 @@
               <p-dropdown 
                 [options]="tiposLoanss" 
                 formControlName="type_loanID" 
-                placeholder="Selecciona un Tipo de Préstamo"
+                placeholder="Select a Loan Type"
                 [showClear]="true">
               </p-dropdown>
             </div>
@@ -146,8 +146,8 @@
               <input
                 type="date"
                 pInputText
-                formControlName="fechaprestamo"
-                title="Fecha del Préstamo"
+                formControlName="date_loan"
+                title="date of loan"
               />
             </div>
           </div>
@@ -160,9 +160,9 @@
               <input
                 type="number"
                 pInputText
-                formControlName="montoprestamo"
-                placeholder="Monto del Préstamo"
-                title="Monto del Préstamo"
+                formControlName="amount_loan"
+                placeholder="ammount of loan"
+                title="ammount"
               />
             </div>
           </div>
@@ -175,9 +175,9 @@
               <input
                 type="number"
                 pInputText
-                formControlName="interes"
-                placeholder="Interés (%)"
-                title="Interés"
+                formControlName="interests"
+                placeholder="interests (%)"
+                title="interests"
               />
             </div>
           </div>
@@ -186,7 +186,7 @@
         <div class="grid">
           <div class="col-12">
             <label>
-              <input type="checkbox" formControlName="estado" /> Activo
+              <input type="checkbox" formControlName="state" /> state
             </label>
           </div>
         </div>
@@ -194,7 +194,7 @@
         <div class="flex justify-content-center flex-wrap">
           <button
             pButton
-            label="Guardar"
+            label="Save"
             icon="pi pi-save"
             severity="info"
             class="mr-4"
@@ -203,7 +203,7 @@
   
           <button
             pButton
-            label="Cancelar"
+            label="Cancel"
             icon="pi pi-times-circle"
             severity="warning"
             class="mr-4"

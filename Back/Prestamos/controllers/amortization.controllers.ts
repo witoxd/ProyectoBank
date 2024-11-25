@@ -44,7 +44,7 @@ export class AmortizationController {
     public async createAmortization(req: Request, res:Response){
         const {
             id,
-            LoansID,
+            LoanID,
             date,
             amount,
             state
@@ -52,7 +52,7 @@ export class AmortizationController {
 
         try {
             let body:AmortizationI = {
-                LoansID,
+                LoanID,
                 date,
                 amount,
                 state
@@ -72,7 +72,7 @@ export class AmortizationController {
 
         const {
             id,
-            LoansID,
+            LoanID,
             date,
             amount,
             state
@@ -80,7 +80,7 @@ export class AmortizationController {
 
         try {
             let body:AmortizationI = {
-                LoansID,
+                LoanID,
                 date,
                 amount,
                 state

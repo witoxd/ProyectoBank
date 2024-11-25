@@ -1,4 +1,4 @@
-import { User } from '../models/User';
+import { User } from "../models/User";
 
 
 import { faker } from '@faker-js/faker';
@@ -12,7 +12,7 @@ async function createFakeData() {
             adress: faker.address.streetAddress(),
             phone: faker.phone.number(),
             password: faker.internet.password(),
-            is_active: faker.datatype.boolean()
+            is_active: faker.datatype.boolean(),
         });
     }
 

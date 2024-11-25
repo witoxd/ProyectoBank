@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TipoCuentaService } from './Type-Accounts.service';
+import { TypeAccountService } from './Type-Accounts.service';
 
-describe('TipoCuentaService', () => {
-  let service: TipoCuentaService;
+describe('TypeAccountService', () => {
+  let service: TypeAccountService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TipoCuentaService);
+    service = TestBed.inject(TypeAccountService);
   });
 
   it('should be created', () => {

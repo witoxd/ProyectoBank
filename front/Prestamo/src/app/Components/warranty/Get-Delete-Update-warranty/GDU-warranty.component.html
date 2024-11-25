@@ -1,30 +1,8 @@
 <p-card class="w-12 h-full">
   <ng-template pTemplate="header">
       <div class="flex justify-content-between flex-wrap">
-          <h3 class="ml-4">Registro de Garantías</h3>
+          <h3 class="ml-4">Register of Warranties</h3>
           <td>
-              <div>
-                  <button 
-                     pButton 
-                     pRipple
-                     size="small"
-                     icon="pi pi-warning"
-                     class="mr-1"
-                     [raised]="true"
-                     (click)="mostrarwarrantys()">
-                  </button>
-              </div>
-              <div class="mt-2 mr-2">
-                  <a 
-                     pButton 
-                     pRipple
-                     label="Crear Garantía" 
-                     class="mr-1"
-                     icon="pi pi-plus-circle"
-                     class="bg-cyan-600"
-                     [routerLink]="['/warrantys/nuevo']">
-                  </a>
-              </div>
           </td>
       </div>
   </ng-template>
@@ -37,75 +15,75 @@
           [rows]="5"
           [rowsPerPageOptions]="[5, 10, 20]"
           [tableStyle]="{ 'max-width': '58rem', 'min-width': '50rem' }"
-          [globalFilterFields]="['prestamosID', 'tipogarantia', 'valorgarantia', 'descripcion']">
+          [globalFilterFields]="['LoanID', 'type_warranty', 'value_warranty', 'description']">
 
           <ng-template pTemplate="header">
               <tr>
-                  <th pSortableColumn="prestamosID" style="width:15%">ID Préstamo <p-sortIcon field="prestamosID" /></th>
-                  <th pSortableColumn="tipogarantia" style="width:15%">Tipo Garantía <p-sortIcon field="tipogarantia" /></th>
-                  <th pSortableColumn="valorgarantia" style="width:15%">Valor Garantía <p-sortIcon field="valorgarantia" /></th>
-                  <th pSortableColumn="descripcion" style="width:40%">Descripción <p-sortIcon field="descripcion" /></th>
-                  <th class="flex justify-content-center flex-wrap">Acciones</th>
+                  <th pSortableColumn="LoanID" style="width:15%">Loan ID <p-sortIcon field="LoanID" /></th>
+                  <th pSortableColumn="type_warranty" style="width:15%">Type Warranty <p-sortIcon field="type_warranty" /></th>
+                  <th pSortableColumn="value_warranty" style="width:15%">Value Warranty <p-sortIcon field="value_warranty" /></th>
+                  <th pSortableColumn="description" style="width:40%">Description <p-sortIcon field="description" /></th>
+                  <th class="flex justify-content-center flex-wrap">Action</th>
               </tr>
               <tr>
-                  <th><p-columnFilter type="text" field="prestamosID" [showClearButton]="true" /></th>
-                  <th><p-columnFilter type="text" field="tipogarantia" [showClearButton]="true" /></th>
-                  <th><p-columnFilter type="text" field="valorgarantia" [showClearButton]="true" /></th>
-                  <th><p-columnFilter type="text" field="descripcion" [showClearButton]="true" /></th>
+                  <th><p-columnFilter type="text" field="LoanID" [showClearButton]="true" /></th>
+                  <th><p-columnFilter type="text" field="type_warranty" [showClearButton]="true" /></th>
+                  <th><p-columnFilter type="text" field="value_warranty" [showClearButton]="true" /></th>
+                  <th><p-columnFilter type="text" field="description" [showClearButton]="true" /></th>
               </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-garantia>
+          <ng-template pTemplate="body" let-warrantys>
               <tr>
                   <!-- Columna editable para ID del préstamo -->
-                  <td [pEditableColumn]="garantia.prestamosID" pEditableColumnField="prestamosID">
+                  <td [pEditableColumn]="warrantys.LoanID" pEditableColumnField="LoanID">
                       <p-cellEditor>
                           <ng-template pTemplate="input">
-                              <input pInputText type="number" [(ngModel)]="garantia.prestamosID" />
+                              <input pInputText type="number" [(ngModel)]="warrantys.LoanID" />
                           </ng-template>
                           <ng-template pTemplate="output">
-                              {{ garantia.prestamosID }}
+                              {{ warrantys.LoanID }}
                           </ng-template>
                       </p-cellEditor>
                   </td>
 
                   <!-- Columna editable para tipo de garantía -->
-                  <td [pEditableColumn]="garantia.tipogarantia" pEditableColumnField="tipogarantia">
+                  <td [pEditableColumn]="warrantys.type_warranty" pEditableColumnField="type_warranty">
                       <p-cellEditor>
                           <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="garantia.tipogarantia" />
+                              <input pInputText type="text" [(ngModel)]="warrantys.type_warranty" />
                           </ng-template>
                           <ng-template pTemplate="output">
-                              {{ garantia.tipogarantia }}
+                              {{ warrantys.type_warranty }}
                           </ng-template>
                       </p-cellEditor>
                   </td>
 
                   <!-- Columna editable para valor de garantía -->
-                  <td [pEditableColumn]="garantia.valorgarantia" pEditableColumnField="valorgarantia">
+                  <td [pEditableColumn]="warrantys.value_warranty" pEditableColumnField="value_warranty">
                       <p-cellEditor>
                           <ng-template pTemplate="input">
-                              <input pInputText type="number" [(ngModel)]="garantia.valorgarantia" />
+                              <input pInputText type="number" [(ngModel)]="warrantys.value_warranty" />
                           </ng-template>
                           <ng-template pTemplate="output">
-                              {{ garantia.valorgarantia }}
+                              {{ warrantys.value_warranty }}
                           </ng-template>
                       </p-cellEditor>
                   </td>
 
                   <!-- Columna editable para descripción de la garantía -->
-                  <td [pEditableColumn]="garantia.descripcion" pEditableColumnField="descripcion">
+                  <td [pEditableColumn]="warrantys.description" pEditableColumnField="description">
                       <p-cellEditor>
                           <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="garantia.descripcion" />
+                              <input pInputText type="text" [(ngModel)]="warrantys.description" />
                           </ng-template>
                           <ng-template pTemplate="output">
-                              {{ garantia.descripcion }}
+                              {{ warrantys.description }}
                           </ng-template>
                       </p-cellEditor>
                   </td>
 
-                  <!-- Columna de acciones -->
+                  <!-- Columna de Action -->
                   <td>
                       <!-- Botón de actualizar garantía directamente -->
                       <button 
@@ -116,7 +94,7 @@
                           severity="warning"
                           class="mr-1"
                           [raised]="true"
-                          (click)="Updatewarranty(garantia)">
+                          (click)="Updatewarranty(warrantys)">
                       </button>
                       
                       <button 
@@ -127,7 +105,7 @@
                           icon="pi pi-trash"
                           class="mr-1"
                           [raised]="true"
-                          (click)="eliminar(garantia.id)">
+                          (click)="eliminar(warrantys.id)">
                       </button>
                   </td>
               </tr>

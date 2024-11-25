@@ -104,7 +104,7 @@ import { CardModule } from 'primeng/card';
   styleUrl: './Get-Delete-Loan.component.css'
 })
 export class GetDeleteLoansComponent implements OnInit {
-  public Loanss: LoanI[] = [];
+  public Loans: LoanI[] = [];
   public TipoLoanss: TypeLoanI[] = []; // Almacena los tipos de préstamo
 
   constructor(
@@ -121,15 +121,15 @@ export class GetDeleteLoansComponent implements OnInit {
   GetLoans(): void {
     this.LoansService.getAllLoans().subscribe({
       next: (data) => {
-        this.Loanss = data.Loanss;
-
+        this.Loans = data.Loans;
+console.log(this.Loans);
         // Asegúrate de que TipoLoanss está cargado antes de asignar el nombre del tipo de préstamo
-        this.Loanss.forEach(Loans => {
+        this.Loans.forEach(Loans => {
           const tipoLoans = this.TipoLoanss.find(tp => tp.id === Loans.type_loanID);
           Loans['nombreTipoPrestamo'] = tipoLoans ? tipoLoans.type : ''; // Asigna el nombre del tipo de préstamo
         });
 
-        console.log(this.Loanss);
+        console.log(this.Loans);
       },
       error: (err) => {
         console.error('Error al cargar préstamos:', err);

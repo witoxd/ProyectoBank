@@ -28,7 +28,7 @@
 
 //   constructor(private formBuilder: FormBuilder) {
 //     this.form = this.formBuilder.group({
-//       clienteID: ['', [Validators.required]],
+//       UserID: ['', [Validators.required]],
 //       empleadoID: ['', [Validators.required]],
 //       fechaLoans: ['', [Validators.required]],
 //       TypeLoan: ['', [Validators.required]],
@@ -63,7 +63,7 @@
 
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router'; // ActivatedRoute añadido para obtener el clienteID
+import { Router, ActivatedRoute } from '@angular/router'; // ActivatedRoute añadido para obtener el UserID
 import { LoansService } from '../../../Services/Loans.service';
 import { TypeLoanService } from '../../../Services/Type-Loan.service';  // Nuevo servicio para tipos de préstamos
 import { LoanI } from '../../../Models/Loan';
@@ -92,8 +92,8 @@ export class CreateLoansComponent implements OnInit {
   private LoansService = inject(LoansService);
   private TypeLoanService = inject(TypeLoanService);  // Servicio de tipo préstamo
   private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);  // Para obtener el clienteID de la URL
-  public clienteID!: number;
+  private activatedRoute = inject(ActivatedRoute);  // Para obtener el UserID de la URL
+  public UserID!: number;
   public tiposLoanss: { label: string, value: number }[] = []; // Opciones del dropdown de tipos de préstamo
 
   constructor(private formBuilder: FormBuilder) {
@@ -101,16 +101,16 @@ export class CreateLoansComponent implements OnInit {
       UserID: ['', [Validators.required]],
       date_loan: ['', [Validators.required]],
       type_loanID: ['', [Validators.required]],  // Nuevo campo para tipo de préstamo
-      ammount_loan: [0, [Validators.required, Validators.min(0)]],
-      interests: [0, [Validators.required, Validators.min(0)]],
+      amount_loan: [0, [Validators.required]],
+      interests: [0, [Validators.required]],
       state: [true, [Validators.required]],
     });
   }
 
   ngOnInit() {
-    // Obtener el clienteID de la URL
+    // Obtener el UserID de la URL
     this.activatedRoute.params.subscribe(params => {
-      this.clienteID = +params['id']; // Se asume que la URL contiene el clienteID
+      this.UserID = +params['id']; // Se asume que la URL contiene el UserID
     });
 
     // Cargar los tipos de préstamo desde el servicio
@@ -128,21 +128,23 @@ export class CreateLoansComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/Loans'); // Navega a la ruta de préstamos
+    this.router.navigateByUrl('/Loan'); // Navega a la ruta de préstamos
   }
 
   onSubmit(): void {
     const formValue: LoanI = {
       ...this.form.value,
-      clienteID: this.clienteID, // Asignar el clienteID recogido de la URL
+      UserID: this.UserID, // Asignar el UserID recogido de la URL
     };
 
     this.LoansService.createLoans(formValue).subscribe(
       () => {
-        this.router.navigateByUrl('/Loans'); // Navega a la ruta de préstamos
+        this.router.navigateByUrl('/Loan'); // Navega a la ruta de préstamos
+        console.log("LOAN Create OK");
       },
       (err) => {
         console.error('Error al crear el préstamo:', err);
+        console.log(formValue);
       }
     );
   }

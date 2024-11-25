@@ -1,5 +1,5 @@
 
-<p-card header="Crear Cuenta" [style]="{ width: '100%' }">
+<p-card header="Update Accountw" [style]="{ width: '100%' }">
     <div>
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()" class="p-3 bg-faded">
         <div class="grid">
@@ -10,9 +10,9 @@
                 class="w-12"
                 type="number"
                 pInputText
-                formControlName="numero"
-                placeholder="Número de Cuenta"
-                title="numero"
+                formControlName="number"
+                placeholder="number of Accounts"
+                title="number"
               />
             </div>
           </div>
@@ -38,9 +38,9 @@
                 class="w-12"
                 type="number"
                 pInputText
-                formControlName="saldo"
-                placeholder="Saldo Inicial"
-                title="saldo"
+                formControlName="Current"
+                placeholder="Current"
+                title="Current"
                 min="0"
               />
             </div>
@@ -51,7 +51,7 @@
           <button
             pButton
             pRipple
-            label="Guardar"
+            label="Save"
             icon="pi pi-save"
             severity="info"
             class="mr-4"
@@ -61,7 +61,7 @@
           <button
             pButton
             pRipple
-            label="Cancelar"
+            label="Cancel"
             icon="pi pi-times-circle"
             severity="warning"
             class="mr-4"

@@ -1,138 +1,126 @@
 <p-card class="w-12 h-full">
     <ng-template pTemplate="header">
         <div class="flex justify-content-between flex-wrap">
-            <h3 class="ml-4">Registro de Préstamos</h3>
-            <td>
-                <div>
-                   <button 
-                       pButton 
-                       pRipple
-                       size="small"
-                       icon="pi pi-warning"
-                       class="mr-1"
-                       [raised]="true"
-                       (click)="GetLoans()">
-                   </button>
-                </div>
-                   
-            </td>
+            <h3 class="ml-4">Register of Loans</h3>
+
         </div>
     </ng-template>
 
     <p>
-        <p-table [value]="Loanss"
+        <p-table [value]="Loans"
             styleClass="p-datatable-gridlines" 
             responsiveLayout="stack" 
             [paginator]="true"
             [rows]="5"
             [rowsPerPageOptions]="[5, 10, 20]"
             [tableStyle]="{ 'max-width': '58rem', 'min-width': '50rem' }"
-            [globalFilterFields]="['id', 'clienteID', 'fechaprestamo', 'tipoprestamo', 'montoprestamo', 'interes', 'estado']">
+            [globalFilterFields]="['id', 'UserID', 'date_loan', 'type_loanID', 'amount_loan', 'interests', 'state']">
 
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="id" style="width:10%">ID <p-sortIcon field="id" /></th>
-                    <th pSortableColumn="clienteID" style="width:15%">Cliente ID <p-sortIcon field="clienteID" /></th>
-                    <th pSortableColumn="fechaprestamo" style="width:20%">Fecha Préstamo <p-sortIcon field="fechaprestamo" /></th>
-                    <th pSortableColumn="tipoprestamo" style="width:15%">Tipo Préstamo <p-sortIcon field="tipoprestamo" /></th>
-                    <th pSortableColumn="montoprestamo" style="width:15%">Monto Préstamo <p-sortIcon field="montoprestamo" /></th>
-                    <th pSortableColumn="interes" style="width:15%">Interés <p-sortIcon field="interes" /></th>
-                    <th class="flex justify-content-center flex-wrap">Estado</th>
-                    <th class="flex justify-content-center flex-wrap">Acciones</th>
+                    <th pSortableColumn="UserID" style="width:15%">User ID <p-sortIcon field="UserID" /></th>
+                    <th pSortableColumn="date_loan" style="width:20%">date of loan <p-sortIcon field="date_loan" /></th>
+                    <th pSortableColumn="type_loanID" style="width:15%">Type of loan <p-sortIcon field="type_loanID" /></th>
+                    <th pSortableColumn="amount_loan" style="width:15%">amount of loan <p-sortIcon field="amount_loan" /></th>
+                    <th pSortableColumn="interests" style="width:15%">Interés <p-sortIcon field="interests" /></th>
+                    <th class="flex justify-content-center flex-wrap">state</th>
+                    <th pSortableColumn="interests" style="width:15%">Acciones <p-sortIcon/></th>
                 </tr>
                 <tr>
                     <th><p-columnFilter type="text" field="id" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="text" field="clienteID" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="date" field="fechaprestamo" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="text" field="tipoprestamo" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="text" field="montoprestamo" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="text" field="interes" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="boolean" field="estado" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="UserID" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="date" field="date_loan" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="type_loanID" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="amount_loan" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="interests" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="boolean" field="state" [showClearButton]="true" /></th>
+                    
                 </tr>
             </ng-template>
 
-            <ng-template pTemplate="body" let-prestamo>
+            <ng-template pTemplate="body" let-Loans>
                 <tr>
                     <!-- Columna editable para id -->
-                    <td [pEditableColumn]="prestamo.id" pEditableColumnField="id">
+                    <td [pEditableColumn]="Loans.id" pEditableColumnField="id">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="number" [(ngModel)]="prestamo.id" />
+                                <input pInputText type="number" [(ngModel)]="Loans.id" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.id }}
+                                {{ Loans.id }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
-                    <!-- Columna editable para clienteID -->
-                    <td [pEditableColumn]="prestamo.clienteID" pEditableColumnField="clienteID">
+                    <!-- Columna editable para UserID -->
+                    <td [pEditableColumn]="Loans.UserID" pEditableColumnField="UserID">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="number" [(ngModel)]="prestamo.clienteID" />
+                                <input pInputText type="number" [(ngModel)]="Loans.UserID" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.clienteID }}
+                                {{ Loans.UserID }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
                     <!-- Columna editable para fecha de préstamo -->
-                    <td [pEditableColumn]="prestamo.fechaprestamo" pEditableColumnField="fechaprestamo">
+                    <td [pEditableColumn]="Loans.date_loan" pEditableColumnField="date_loan">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="date" [(ngModel)]="prestamo.fechaprestamo" />
+                                <input pInputText type="date" [(ngModel)]="Loans.date_loan" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.fechaprestamo }}
+                                {{ Loans.date_loan }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
                     <!-- Columna editable para tipo de préstamo -->
-                    <td [pEditableColumn]="prestamo.tipoprestamo" pEditableColumnField="tipoprestamo">
+                    <td [pEditableColumn]="Loans.type_loanID" pEditableColumnField="type_loanID">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="prestamo.tipoprestamo" />
+                                <input pInputText type="text" [(ngModel)]="Loans.type_loanID" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.nombreTipoPrestamo }}
+                                {{ Loans.nombreTipoPrestamo }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
                     <!-- Columna editable para monto de préstamo -->
-                    <td [pEditableColumn]="prestamo.montoprestamo" pEditableColumnField="montoprestamo">
+                    <td [pEditableColumn]="Loans.amount_loan" pEditableColumnField="amount_loan">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="number" [(ngModel)]="prestamo.montoprestamo" />
+                                <input pInputText type="number" [(ngModel)]="Loans.amount_loan" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.montoprestamo }}
+                                {{ Loans.amount_loan }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
                     <!-- Columna editable para interés -->
-                    <td [pEditableColumn]="prestamo.interes" pEditableColumnField="interes">
+                    <td [pEditableColumn]="Loans.interests" pEditableColumnField="interests">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="number" [(ngModel)]="prestamo.interes" />
+                                <input pInputText type="number" [(ngModel)]="Loans.interests" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.interes }}
+                                {{ Loans.interests }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
 
-                    <!-- Columna editable para estado -->
-                    <td [pEditableColumn]="prestamo.estado" pEditableColumnField="estado">
+                    <!-- Columna editable para state -->
+                    <td [pEditableColumn]="Loans.state" pEditableColumnField="state">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="checkbox" [(ngModel)]="prestamo.estado" />
+                                <input pInputText type="checkbox" [(ngModel)]="Loans.state" />
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{ prestamo.estado ? 'Activo' : 'Inactivo' }}
+                                {{ Loans.state ? 'Activo' : 'Inactivo' }}
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -147,7 +135,7 @@
                             severity="warning"
                             class="mr-1"
                             [raised]="true"
-                            [routerLink]="['/Prestamo/Actualizar', prestamo.id]">
+                            (click)="UpdateLoanss(Loans)">
                         </button>
                         
                         <button 
@@ -158,8 +146,19 @@
                             icon="pi pi-trash"
                             class="mr-1"
                             [raised]="true"
-                            (click)="delete(prestamo.id)">
+                            (click)="delete(Loans.id)">
                         </button>
+
+                        <button 
+                        pButton 
+                        pRipple
+                        size="small"
+                        severity="warning"
+                        class="mr-1"
+                        [raised]="true"
+                        [routerLink]="['/warranty/new', Loans.id]">
+                        Create warranty
+                    </button>
                     </td>
                 </tr>
             </ng-template>

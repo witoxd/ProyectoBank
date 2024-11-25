@@ -90,7 +90,7 @@ export class UpdateAccountComponent {
   }
 
   cancel() {
-    this.router.navigateByUrl('/clientes'); // Cambia la ruta según sea necesario
+    this.router.navigateByUrl('/Accounts'); // Cambia la ruta según sea necesario
   }
 
   onSubmit(): void {

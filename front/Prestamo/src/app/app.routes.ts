@@ -38,7 +38,7 @@ export const routes: Routes = [
         component: GetDeleteAccountsComponent
     },
     {
-        path: "Accounts/new",
+        path: "Accounts/new/:id",
         component: CrearAccountComponent
     },
     {
@@ -50,7 +50,7 @@ export const routes: Routes = [
         component: GetDeleteLoansComponent
     },
     {
-        path: "Loan/new",
+        path: "Loan/new/:id",
         component: CreateLoansComponent
     },
     {
@@ -70,7 +70,7 @@ export const routes: Routes = [
         component: GDUwarrantyComponent
     },
     {
-        path: "warranty/new",
+        path: "warranty/new/:id",
         component: CreatewarrantyComponent
     }
 

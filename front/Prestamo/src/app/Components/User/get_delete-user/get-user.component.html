@@ -33,10 +33,10 @@
                         name <p-sortIcon field="nameCliente" />
                     </th>
                     <th pSortableColumn="emailCliente" style="width:19%">
-                        Dirección <p-sortIcon field="emailCliente" />
+                        email <p-sortIcon field="emailCliente" />
                     </th>
                     <th pSortableColumn="phoneCliente" style="width:19%">
-                        Teléfono <p-sortIcon field="phoneCliente" />
+                        phone <p-sortIcon field="phoneCliente" />
                     </th>
                     <th pSortableColumn="is_activeCliente" style="width:19%">
                         is_active <p-sortIcon field="is_activeCliente" />
@@ -124,10 +124,10 @@
                         name <p-sortIcon field="nameCliente" />
                     </th>
                     <th pSortableColumn="emailCliente" style="width:19%">
-                        Dirección <p-sortIcon field="emailCliente" />
+                        email <p-sortIcon field="emailCliente" />
                     </th>
                     <th pSortableColumn="phoneCliente" style="width:19%">
-                        Teléfono <p-sortIcon field="phoneCliente" />
+                        phone <p-sortIcon field="phoneCliente" />
                     </th>
                     <th pSortableColumn="is_activeCliente" style="width:19%">
                         is_active <p-sortIcon field="is_activeCliente" />
@@ -231,26 +231,14 @@
  <p-card class="w-12 h-full">
     <ng-template pTemplate="header">
         <div class="flex justify-content-between flex-wrap">
-            <h3 class="ml-4">Registro de Users</h3>
+            <h3 class="ml-4">Register of Users</h3>
             <td>
-                
-                    <div>
-                       <button 
-                       pButton 
-                       pRipple
-                       size="small"
-                       icon="pi pi-warning"
-                       class="mr-1"
-                       [raised]="true"
-                       (click)="mostrarUsers()">
-                   </button>
-                   </div>
                    
             <div class="mt-2 mr-2">
                 <a 
                   pButton 
                   pRipple
-                  label="Crear Users" 
+                  label="Create Users" 
                   class="mr-1"
                   icon="pi pi-user-plus"
                   class="bg-cyan-600"
@@ -275,10 +263,10 @@
                 <tr>
                     <th pSortableColumn="name" style="width:19%">name <p-sortIcon field="name" /></th>
                     <th pSortableColumn="adress" style="width:19%">adress <p-sortIcon field="adress" /></th>
-                    <th pSortableColumn="email" style="width:19%">Dirección <p-sortIcon field="email" /></th>
-                    <th pSortableColumn="phone" style="width:19%">Teléfono <p-sortIcon field="phone" /></th>
-                    <th pSortableColumn="is_active" style="width:19%">is_active <p-sortIcon field="is_active" /></th>
-                    <th class="flex justify-content-center flex-wrap">Acciones</th>
+                    <th pSortableColumn="email" style="width:19%">email <p-sortIcon field="email" /></th>
+                    <th pSortableColumn="phone" style="width:19%">phone <p-sortIcon field="phone" /></th>
+                    <th pSortableColumn="is_active" style="width:19%">is active <p-sortIcon field="is_active" /></th>
+                    <th class="flex justify-content-center flex-wrap">Action</th>
                 </tr>
                 <tr>
                     <th><p-columnFilter type="text" field="name" [showClearButton]="true" /></th>
@@ -375,7 +363,7 @@
                             icon="pi pi-trash"
                             class="mr-1"
                             [raised]="true"
-                            [routerLink] = "['/User/nuevo', Users.id]">
+                            (click)="eliminar(Users.id)">
                         </button>
 
                         <button 
@@ -386,7 +374,7 @@
                         icon="pi pi-trash"
                         class="mr-1"
                         [raised]="true"
-                        [routerLink] = "['/Cuentas/nuevo', Users.id]">
+                        [routerLink] = "['/Accounts/new', Users.id]">
                         Crear Cuenta
                     </button>
 

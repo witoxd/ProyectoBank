@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { Loan, LoanI } from "../models/loan";
-
-
+import { Amortization, AmortizationI } from "../models/amortization";
+import { warranty, warrantyI } from "../models/warranty";
 export class LoanController {
 
-    public async test(req: Request, res:Response){
+    public async test(req: Request, res: Response) {
         try {
             res.send('Pruba de test para Loan')
         } catch (error) {
@@ -12,69 +12,101 @@ export class LoanController {
         }
     }
 
-    public async getAllLoan(req: Request, res:Response){
+    public async getAllLoan(req: Request, res: Response) {
         try {
             const Loans: LoanI[] = await Loan.findAll() // select * from Loans;
-            res.status(200).json({Loans})
+            res.status(200).json({ Loans })
         } catch (error) {
             res.status(500).json({ error });
         }
     }
 
-    public async getOneLoan(req: Request, res:Response){
+    public async getOneLoan(req: Request, res: Response) {
         const { id: idParam } = req.params
 
         try {
-            const Loans:LoanI | null = await Loan.findOne(
+            const Loans: LoanI | null = await Loan.findOne(
                 {
-                    where: { 
+                    where: {
                         id: idParam,
                     }
                 }
             )
-            if (Loans){
+            if (Loans) {
                 res.status(200).json(Loans)
-            } else return  res.status(300).json({msg: "there is no loan"})
+            } else return res.status(300).json({ msg: "there is no loan" })
 
         } catch (error) {
-            res.status(500).json({msg: "Error Internal"})
+            res.status(500).json({ msg: "Error Internal" })
         }
     }
 
-    public async createLoan(req: Request, res:Response){
+    public async createLoan(req: Request, res: Response) {
         const {
             id,
             UserID,
-            // empleadoID,
             date_loan,
             type_loanID,
             amount_loan,
             interests,
             state
         } = req.body;
-
+    
         try {
-            let body:LoanI = {
+            // Crear el préstamo
+            let Body: LoanI = {
+                id,
                 UserID,
-                // empleadoID,
                 date_loan,
                 type_loanID,
                 amount_loan,
                 interests,
                 state
-            } 
+            };
+    
+            const newLoan: Loan = await Loan.create({ ...Body });
+    
+            // Generar las amortizaciones
+            const numCuotas = 3; // Número de cuotas (por ejemplo, 3 meses)
+            const montoCuota = amount_loan / numCuotas; // Monto por cuota (división simple)
+            const startDate = new Date(date_loan); // Fecha inicial del préstamo
+            const amortizations: AmortizationI[] = []; // Array para almacenar las amortizaciones creadas
+    
+    
+            for (let i = 1; i <= numCuotas; i++) {
+                const dueDate = new Date(startDate); // Clonar la fecha inicial
+                dueDate.setMonth(startDate.getMonth() + i); // Incrementar la fecha por cada mes
+    
+                const LoanID = newLoan.id;
+                const date = dueDate;
+                const amount = montoCuota;
+                const state = false;
 
-            const Loans:LoanI = await Loan.create({...body});
-            return res.status(200).json({Loans});
-
+                let bodyII: AmortizationI = {
+                    LoanID,
+                    date,
+                    amount,
+                    state
+                };
+    
+                await Amortization.create({ ...bodyII });
+            }
+    
+            // Crear todas las amortizaciones en la base de datos
+   
+    
+            // Responder con los datos creados
+            return res.status(200).json({
+                loan: newLoan
+            });
         } catch (error) {
+            console.error("Error creating loan and amortizations:", error);
             res.status(500).json({ error });
         }
-
     }
-
-    public async updateLoan(req: Request, res:Response){
-        const { id:pk } = req.params;
+    
+    public async updateLoan(req: Request, res: Response) {
+        const { id: pk } = req.params;
 
         const {
             id,
@@ -85,10 +117,11 @@ export class LoanController {
             amount_loan,
             interests,
             state
-        }= req.body
+        } = req.body
 
         try {
-            let body:LoanI = {
+            let body: LoanI = {
+                id,
                 UserID,
                 // empleadoID,
                 date_loan,
@@ -96,7 +129,7 @@ export class LoanController {
                 amount_loan,
                 interests,
                 state
-            } 
+            }
 
             const LoanExist: LoanI | null = await Loan.findByPk(pk);
             // const userExist: UsuarioI | null = await Usuario.findOne(
@@ -105,11 +138,11 @@ export class LoanController {
             //     }
             // );
 
-            if(!LoanExist) return res.status(500).json({msg:"there is no loan"})
+            if (!LoanExist) return res.status(500).json({ msg: "there is no loan" })
             await Loan.update(
-                body,{
-                    where: {id:pk}
-                }
+                body, {
+                where: { id: pk }
+            }
             );  // select update from usuarios where id=pk
 
 
@@ -118,28 +151,44 @@ export class LoanController {
             res.status(500).json({ error });
         }
         const Loans: LoanI | null = await Loan.findByPk(pk);
-        if(Loans) return res.status(200).json({Loans})
+        if (Loans) return res.status(200).json({ Loans })
 
     }
 
-    public async deletedeleteLoan(req: Request, res:Response){
-        const { id:pk } = req.params;
-
+    public async deletedeleteLoan(req: Request, res: Response) {
+        const { id: pk } = req.params;
 
         try {
+            const AmortizationExist: AmortizationI | null = await Amortization.findByPk(pk);
             const LoanExist: LoanI | null = await Loan.findByPk(pk);
-            if(!LoanExist) return res.status(500).json({msg:"there is no loan"})
+            if (!LoanExist) return res.status(500).json({ msg: "there is no loan" })
+                const warrantyExist: AmortizationI | null = await Amortization.findByPk(pk);
+
+            if (!warrantyExist){
+                await warranty.destroy(
+                    {
+                        where: { LoanID: pk }
+                    }
+                )
+            }
+            if (!AmortizationExist){
+                await Amortization.destroy(
+                    {
+                        where: { LoanID: pk }
+                    }
+                )
+            }
             await Loan.destroy(
                 {
-                    where: {id: pk}
+                    where: { id: pk }
                 }
             )
-            res.status(200).json({msg:"Loan removed"})
+            res.status(200).json({ msg: "Loan removed" })
         } catch (error) {
             res.status(500).json({ error });
         }
 
-    } 
+    }
 
 
 }

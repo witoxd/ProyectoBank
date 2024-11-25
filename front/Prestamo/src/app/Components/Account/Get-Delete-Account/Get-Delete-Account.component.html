@@ -1,29 +1,24 @@
-
 <p-card class="w-12 h-full">
 
     <p>
-        <p-table [value]="Accounts"
-            styleClass="p-datatable-gridlines" 
-            responsiveLayout="stack" 
-            [paginator]="true"
-            [rows]="5"
-            [rowsPerPageOptions]="[5, 10, 20]"
-            [tableStyle]="{ 'max-width': '58rem', 'min-width': '50rem' }"
-            [globalFilterFields]="['UserID', 'number', 'TypeAccountID', 'saldo']">
+        <p-table [value]="Accounts" styleClass="p-datatable-gridlines" responsiveLayout="stack" [paginator]="true"
+            [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'max-width': '58rem', 'min-width': '50rem' }"
+            [globalFilterFields]="['UserID', 'number', 'TypeAccountID', 'Current']">
 
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="UserID" style="width:19%">UserID <p-sortIcon field="UserID" /></th>
                     <th pSortableColumn="number" style="width:19%">number <p-sortIcon field="number" /></th>
-                    <th pSortableColumn="TypeAccountID" style="width:19%">TypeAccountID <p-sortIcon field="TypeAccountID" /></th>
-                    <th pSortableColumn="saldo" style="width:19%">saldo <p-sortIcon field="saldo" /></th>
+                    <th pSortableColumn="TypeAccountID" style="width:19%">TypeAccountID <p-sortIcon
+                            field="TypeAccountID" /></th>
+                    <th pSortableColumn="Current" style="width:19%">Current <p-sortIcon field="Current" /></th>
                     <th class="flex justify-content-center flex-wrap">Acciones</th>
                 </tr>
                 <tr>
                     <th><p-columnFilter type="text" field="UserID" [showClearButton]="true" /></th>
                     <th><p-columnFilter type="text" field="number" [showClearButton]="true" /></th>
                     <th><p-columnFilter type="text" field="TypeAccountID" [showClearButton]="true" /></th>
-                    <th><p-columnFilter type="text" field="saldo" [showClearButton]="true" /></th>
+                    <th><p-columnFilter type="text" field="Current" [showClearButton]="true" /></th>
                 </tr>
             </ng-template>
 
@@ -55,23 +50,30 @@
                     </td>
 
                     <!-- Columna editable para TypeAccountIDCliente -->
-                    <td [pEditableColumn]="Accounts.nombreTypeAccountID" pEditableColumnField="nombreTypeAccountID">
-                        <p-cellEditor>
-                          <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="Accounts.nombreTypeAccountID" />
-                          </ng-template>
-                          <ng-template pTemplate="output">
-                            {{ Accounts.nombreTypeAccountID }}
-                          </ng-template>
-                        </p-cellEditor>
-                      </td>
-                      
-
-                    <!-- Columna editable para saldoCliente -->
-                    <td [pEditableColumn]="Accounts.saldo" pEditableColumnField="saldo">
+                    <td [pEditableColumn]="Accounts.TypeAccountID" pEditableColumnField="TypeAccountID">
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="Accounts.saldo" />
+                                <p-dropdown 
+                                [options]="TypeAccount"
+                                optionLabel="type"
+                                optionValue="id"
+                                [filter]="true" 
+                                [(ngModel)]="Accounts.TypeAccountID">
+                                </p-dropdown>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ Accounts.TypeAccountID }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+
+
+                    <!-- Columna editable para CurrentCliente -->
+                    <td [pEditableColumn]="Accounts.current_balance" pEditableColumnField="current_balance">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="Accounts.current_balance" />
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{ Accounts.current_balance }}
@@ -79,55 +81,23 @@
                         </p-cellEditor>
                     </td>
 
-                    <!-- Columna editable para correoCliente -->
-                    <td [pEditableColumn]="Accounts.correo" pEditableColumnField="correo">
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="Accounts.correo" />
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{ Accounts.correo }}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
 
                     <!-- Columna de acciones -->
                     <td>
                         <!-- Botón de actualizar cliente directamente -->
-                         
-                        <button 
-                            pButton 
-                            pRipple
-                            size="small"
-                            icon="pi pi-sync"
-                            severity="warning"
-                            class="mr-1"
-                            [raised]="true"
-                            [routerLink]="['/Accounts/update', Accounts.id]">
-                        </button>
-                        
-                        <button 
-                            pButton 
-                            pRipple
-                            size="small"
-                            severity="danger"
-                            icon="pi pi-trash"
-                            class="mr-1"
-                            [raised]="true"
-                            (click)="eliminar(Accounts.id)">
+
+                        <button pButton pRipple size="small" icon="pi pi-sync" severity="warning" class="mr-1"
+                            [raised]="true" (click)="updateAccount(Accounts)">
                         </button>
 
-                        <button 
-                        pButton 
-                        pRipple
-                        size="small"
-                        severity="danger"
-                        icon="pi pi-trash"
-                        class="mr-1"
-                        [raised]="true"
-                        [routerLink] = "['/Prestamos/nuevo', Accounts.UserID]">
-                        Crear Prestamos
-                    </button>
+                        <button pButton pRipple size="small" severity="danger" icon="pi pi-trash" class="mr-1"
+                            [raised]="true" (click)="deleteAccount(Accounts.id)">
+                        </button>
+
+                        <button pButton pRipple size="small" severity="danger" icon="pi pi-trash" class="mr-1"
+                            [raised]="true" [routerLink]="['/Loan/new', Accounts.UserID]">
+                            Crear Prestamos
+                        </button>
                     </td>
                 </tr>
             </ng-template>

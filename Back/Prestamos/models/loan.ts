@@ -6,6 +6,7 @@ import { TypeLoan } from "./loan_types";
 
 
 export class Loan extends Model {
+    public id!: number;
     public UserID!: number;
     // public empleadoID!: number;
     public date_loan!: Date;
@@ -16,6 +17,7 @@ export class Loan extends Model {
 }
 
 export interface LoanI {
+    id: number;
     UserID: number;
     // empleadoID: number;
     date_loan: Date;
@@ -26,6 +28,11 @@ export interface LoanI {
 }
 
 Loan.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     UserID: {
         type: DataTypes.INTEGER,
         allowNull: false
